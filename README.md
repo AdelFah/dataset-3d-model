@@ -142,7 +142,8 @@ pip install requests openpyxl pandas beautifulsoup4 duckdb
 
 ### Порядок запуска скриптов
 
-Все скрипты запускаются из папки `3Д_модели/`.
+Все скрипты запускаются из папки `3Д_модели/`. Можно использовать любой терминал —
+PowerShell, CMD, встроенный терминал VS Code или любую другую IDE.
 
 **Шаг 1. Сформировать список кандидатов**
 
@@ -152,15 +153,32 @@ python build_asset_candidates.py
 
 **Шаг 2. Найти модели на Sketchfab**
 
-```powershell
+Перед запуском нужно задать API-токен как переменную окружения:
+
+```bash
+# PowerShell
 $env:SKETCHFAB_TOKEN = "ВАШ_ТОКЕН"
+
+# CMD
+set SKETCHFAB_TOKEN=ВАШ_ТОКЕН
+
+# Linux / macOS
+export SKETCHFAB_TOKEN=ВАШ_ТОКЕН
+```
+
+Либо создать файл `.env` в папке `3Д_модели/` и прописать там:
+```
+SKETCHFAB_TOKEN=ВАШ_ТОКЕН
+```
+
+Затем запустить:
+```bash
 python discover_sketchfab_assets.py
 ```
 
 **Шаг 3. Скачать найденные модели**
 
-```powershell
-$env:SKETCHFAB_TOKEN = "ВАШ_ТОКЕН"
+```bash
 python download_sketchfab_assets.py --limit 20
 ```
 
@@ -176,8 +194,7 @@ python select_best_external_assets.py
 
 **Шаг 5. Масштабировать под реальные габариты**
 
-```powershell
-$env:CARS_DATASET_ROOT = "$PWD\cars_dataset"
+```bash
 python batch_fit_all_vehicles.py
 ```
 
