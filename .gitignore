@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+_holes_v2_progress.json
+cars_dataset/external_fitted/
+cars_dataset/external_assets/
+*.blend
